@@ -10,6 +10,11 @@ import com.example.roomsiswa.view.DestinasiHome
 import com.example.roomsiswa.view.HomeScreen
 
 @Composable
+fun SiswaApp(navController: NavHostController = rememberNavController()) {
+    HostNavigasi(navController = navController)
+}
+
+@Composable
 fun HostNavigasi(
     navController: NavHostController = rememberNavController(),
     modifier: Modifier = Modifier
