@@ -10,17 +10,15 @@ import com.example.roomsiswa.room.Siswa
 class EntryViewModel(private val repositoriSiswa: RespositoriSiswa) : ViewModel() {
 
     /**
-     * Berisi status UI Siswa saat ini
+     * Berisi status Siswa saat ini
      */
     var uiStateSiswa by mutableStateOf(UIStateSiswa())
         private set
 
-    /**
-     * Menjaga input agar tetap valid
-     */
+    /* Fungsi untuk memvalidasi input */
     private fun validasiInput(uiState: DetailSiswa = uiStateSiswa.detailSiswa): Boolean {
         return with(uiState) {
-            nama.isNotBlank() && alamat.isNotBlank() && telepon.isNotBlank()
+            nama.isNotBlank() && alamat.isNotBlank() && telpon.isNotBlank()
         }
     }
 
@@ -29,6 +27,7 @@ class EntryViewModel(private val repositoriSiswa: RespositoriSiswa) : ViewModel(
             UIStateSiswa(detailSiswa = detailSiswa, isEntryValid = validasiInput(detailSiswa))
     }
 
+    /* Fungsi untuk menyimpan data yang di-entry */
     suspend fun saveSiswa() {
         if (validasiInput()) {
             repositoriSiswa.insertSiswa(uiStateSiswa.detailSiswa.toSiswa())
@@ -37,7 +36,7 @@ class EntryViewModel(private val repositoriSiswa: RespositoriSiswa) : ViewModel(
 }
 
 /**
- * Mewakili Status UI untuk Siswa.
+ * Mewakili Status Ui untuk Siswa.
  */
 data class UIStateSiswa(
     val detailSiswa: DetailSiswa = DetailSiswa(),
@@ -48,18 +47,18 @@ data class DetailSiswa(
     val id: Int = 0,
     val nama: String = "",
     val alamat: String = "",
-    val telepon: String = ""
+    val telpon: String = "",
 )
 
-/* Fungsi untuk mengkonversi data input ke entity */
+/* Fungsi untuk mengkonversi data input ke data dalam tabel sesuai jenis datanya*/
 fun DetailSiswa.toSiswa(): Siswa = Siswa(
     id = id,
     nama = nama,
     alamat = alamat,
-    telepon = telepon
+    telepon = telpon
 )
 
-fun Siswa.toUIStateSiswa(isEntryValid: Boolean = false): UIStateSiswa = UIStateSiswa(
+fun Siswa.toUiStateSiswa(isEntryValid: Boolean = false): UIStateSiswa = UIStateSiswa(
     detailSiswa = this.toDetailSiswa(),
     isEntryValid = isEntryValid
 )
@@ -68,5 +67,5 @@ fun Siswa.toDetailSiswa(): DetailSiswa = DetailSiswa(
     id = id,
     nama = nama,
     alamat = alamat,
-    telepon = telepon
+    telpon = telepon
 )
