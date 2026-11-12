@@ -6,5 +6,7 @@
     <string name="nama">Nama</string>
     <string name="alamat">Alamat</string>
     <string name="telepon">Telepon</string>
+    <string name="telpon">Telepon</string>
+    <string name="required_field">* Isian wajib diisi</string>
     <string name="back">Kembali</string>
 </resources>
