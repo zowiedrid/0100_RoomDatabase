@@ -6,7 +6,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.roomsiswa.view.DestinasiEntry
 import com.example.roomsiswa.view.DestinasiHome
+import com.example.roomsiswa.view.EntrySiswaScreen
 import com.example.roomsiswa.view.HomeScreen
 
 @Composable
@@ -16,7 +18,7 @@ fun SiswaApp(navController: NavHostController = rememberNavController()) {
 
 @Composable
 fun HostNavigasi(
-    navController: NavHostController = rememberNavController(),
+    navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
     NavHost(
@@ -26,9 +28,12 @@ fun HostNavigasi(
     ) {
         composable(DestinasiHome.route) {
             HomeScreen(
-                navigateToItemEntry = {
-                    // Navigate to entry screen
-                }
+                navigateToItemEntry = { navController.navigate(DestinasiEntry.route) }
+            )
+        }
+        composable(DestinasiEntry.route) {
+            EntrySiswaScreen(
+                navigateBack = { navController.popBackStack() }
             )
         }
     }

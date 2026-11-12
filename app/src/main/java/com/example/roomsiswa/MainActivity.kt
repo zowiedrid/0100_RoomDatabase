@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.example.roomsiswa.ui.theme.RoomSiswaTheme
-import com.example.roomsiswa.uicontroller.HostNavigasi
+import com.example.roomsiswa.uicontroller.SiswaApp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,7 +13,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             RoomSiswaTheme {
-                HostNavigasi()
+                SiswaApp()
             }
         }
     }
